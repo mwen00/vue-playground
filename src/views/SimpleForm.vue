@@ -19,12 +19,14 @@
       <BaseInput v-model="event.location" label="Location" type="text" />
 
       <h3>Are pets allowed?</h3>
-      <div>
-        <BaseRadio v-model="event.pets" :value="1" label="Yes" name="pets" />
-      </div>
 
       <div>
-        <BaseRadio v-model="event.pets" :value="0" label="No" name="pets" />
+        <BaseRadioGroup
+          v-model="event.pets"
+          name="pets"
+          :options="petOptions"
+          vertical
+        />
       </div>
 
       <h3>Extras</h3>
@@ -54,12 +56,15 @@ export default {
         'food',
         'community'
       ],
+      petOptions: [
+        { label: 'Yes', value: 1 },
+        { label: 'No', value: 0 }
+      ],
       event: {
         category: '',
         title: '',
         description: '',
         location: '',
-        pets: 1,
         extras: {
           catering: false,
           music: false
